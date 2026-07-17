@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "civican-schemas"
+version = "0.1.0"
+description = "Protobuf and ConnectRPC schemas for civican"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Mathieu Leduc-Hamel" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "connectrpc>=0.10.1",
+    "protobuf>=4.25.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/civican_schemas"]
