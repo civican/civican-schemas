@@ -23,4 +23,4 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/civican_schemas"]
+packages = ["src/civican"]
