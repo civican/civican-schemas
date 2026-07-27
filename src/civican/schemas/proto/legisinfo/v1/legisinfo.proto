@@ -128,3 +128,65 @@ message BillDetail {
   string latest_event_date = 8;
   repeated BillStage stages = 9;
 }
+
+enum PendingBillType {
+  PENDING_BILL_TYPE_UNSPECIFIED = 0;
+  PENDING_BILL_TYPE_STAGE = 1;
+  PENDING_BILL_TYPE_METADATA = 2;
+}
+
+message StagePendingBill {
+  string session = 1;
+  string bill_number = 2;
+  string author_name = 3;
+  string author_email = 4;
+  string metadata_xml_path = 5;
+  string summary_md_path = 6;
+  string slug = 7;
+  string stage_name = 8;
+  optional string stage_date = 9;
+  string stage_xml_path = 10;
+  string stage_md_path = 11;
+  string type = 12;
+}
+
+message MetadataPendingBill {
+  string session = 1;
+  string bill_number = 2;
+  string author_name = 3;
+  string author_email = 4;
+  string metadata_xml_path = 5;
+  string summary_md_path = 6;
+  optional string event_date = 7;
+  optional string restore_xml_path = 8;
+  optional string restore_md_path = 9;
+  string type = 10;
+}
+
+message ScrapeResult {
+  bool success = 1;
+  repeated string updated_stages = 2;
+  string author_name = 3;
+  string author_email = 4;
+  repeated StagePendingBill stage_pending_commits = 5;
+  repeated MetadataPendingBill metadata_pending_commits = 6;
+}
+
+message BillIndexData {
+  string title = 1;
+  string status = 2;
+  string activity = 3;
+  repeated string stages = 4;
+  string last_checked = 5;
+}
+
+message SessionInfo {
+  string name = 1;
+  string status = 2;
+  string updated = 3;
+}
+
+message DocViewerLinks {
+  map<string, string> xml_links = 1;
+  map<string, string> html_links = 2;
+}

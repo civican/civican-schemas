@@ -29,6 +29,12 @@ class SortDirection(IntEnum):
     SORT_DIRECTION_ASC = 1
     SORT_DIRECTION_DESC = 2
 
+
+class PendingBillType(IntEnum):
+    PENDING_BILL_TYPE_UNSPECIFIED = 0
+    PENDING_BILL_TYPE_STAGE = 1
+    PENDING_BILL_TYPE_METADATA = 2
+
 class ListSessionsRequest(BaseModel):
     pass
 
@@ -113,3 +119,53 @@ class GetBillTextResponse(BaseModel):
     stage_slug: str = Field(default="")
     content: str = Field(default="")
     format: str = Field(default="")
+
+class StagePendingBill(BaseModel):
+    session: str = Field(default="")
+    bill_number: str = Field(default="")
+    author_name: str = Field(default="")
+    author_email: str = Field(default="")
+    metadata_xml_path: str = Field(default="")
+    summary_md_path: str = Field(default="")
+    slug: str = Field(default="")
+    stage_name: str = Field(default="")
+    stage_date: typing.Optional[str] = Field(default="")
+    stage_xml_path: str = Field(default="")
+    stage_md_path: str = Field(default="")
+    type: str = Field(default="")
+
+class MetadataPendingBill(BaseModel):
+    session: str = Field(default="")
+    bill_number: str = Field(default="")
+    author_name: str = Field(default="")
+    author_email: str = Field(default="")
+    metadata_xml_path: str = Field(default="")
+    summary_md_path: str = Field(default="")
+    event_date: typing.Optional[str] = Field(default="")
+    restore_xml_path: typing.Optional[str] = Field(default="")
+    restore_md_path: typing.Optional[str] = Field(default="")
+    type: str = Field(default="")
+
+class ScrapeResult(BaseModel):
+    success: bool = Field(default=False)
+    updated_stages: typing.List[str] = Field(default_factory=list)
+    author_name: str = Field(default="")
+    author_email: str = Field(default="")
+    stage_pending_commits: typing.List[StagePendingBill] = Field(default_factory=list)
+    metadata_pending_commits: typing.List[MetadataPendingBill] = Field(default_factory=list)
+
+class BillIndexData(BaseModel):
+    title: str = Field(default="")
+    status: str = Field(default="")
+    activity: str = Field(default="")
+    stages: typing.List[str] = Field(default_factory=list)
+    last_checked: str = Field(default="")
+
+class SessionInfo(BaseModel):
+    name: str = Field(default="")
+    status: str = Field(default="")
+    updated: str = Field(default="")
+
+class DocViewerLinks(BaseModel):
+    xml_links: "typing.Dict[str, str]" = Field(default_factory=dict)
+    html_links: "typing.Dict[str, str]" = Field(default_factory=dict)

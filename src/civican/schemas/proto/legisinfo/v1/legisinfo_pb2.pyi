@@ -26,6 +26,12 @@ class SortDirection(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     SORT_DIRECTION_UNSPECIFIED: _ClassVar[SortDirection]
     SORT_DIRECTION_ASC: _ClassVar[SortDirection]
     SORT_DIRECTION_DESC: _ClassVar[SortDirection]
+
+class PendingBillType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    PENDING_BILL_TYPE_UNSPECIFIED: _ClassVar[PendingBillType]
+    PENDING_BILL_TYPE_STAGE: _ClassVar[PendingBillType]
+    PENDING_BILL_TYPE_METADATA: _ClassVar[PendingBillType]
 CHAMBER_UNSPECIFIED: Chamber
 CHAMBER_HOUSE: Chamber
 CHAMBER_SENATE: Chamber
@@ -38,6 +44,9 @@ SORT_FIELD_TITLE: SortField
 SORT_DIRECTION_UNSPECIFIED: SortDirection
 SORT_DIRECTION_ASC: SortDirection
 SORT_DIRECTION_DESC: SortDirection
+PENDING_BILL_TYPE_UNSPECIFIED: PendingBillType
+PENDING_BILL_TYPE_STAGE: PendingBillType
+PENDING_BILL_TYPE_METADATA: PendingBillType
 
 class ListSessionsRequest(_message.Message):
     __slots__ = ()
@@ -198,3 +207,117 @@ class BillDetail(_message.Message):
     latest_event_date: str
     stages: _containers.RepeatedCompositeFieldContainer[BillStage]
     def __init__(self, number: _Optional[str] = ..., session: _Optional[str] = ..., title_en: _Optional[str] = ..., title_fr: _Optional[str] = ..., sponsor_name: _Optional[str] = ..., sponsor_email: _Optional[str] = ..., status: _Optional[str] = ..., latest_event_date: _Optional[str] = ..., stages: _Optional[_Iterable[_Union[BillStage, _Mapping]]] = ...) -> None: ...
+
+class StagePendingBill(_message.Message):
+    __slots__ = ("session", "bill_number", "author_name", "author_email", "metadata_xml_path", "summary_md_path", "slug", "stage_name", "stage_date", "stage_xml_path", "stage_md_path", "type")
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    BILL_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    AUTHOR_NAME_FIELD_NUMBER: _ClassVar[int]
+    AUTHOR_EMAIL_FIELD_NUMBER: _ClassVar[int]
+    METADATA_XML_PATH_FIELD_NUMBER: _ClassVar[int]
+    SUMMARY_MD_PATH_FIELD_NUMBER: _ClassVar[int]
+    SLUG_FIELD_NUMBER: _ClassVar[int]
+    STAGE_NAME_FIELD_NUMBER: _ClassVar[int]
+    STAGE_DATE_FIELD_NUMBER: _ClassVar[int]
+    STAGE_XML_PATH_FIELD_NUMBER: _ClassVar[int]
+    STAGE_MD_PATH_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
+    session: str
+    bill_number: str
+    author_name: str
+    author_email: str
+    metadata_xml_path: str
+    summary_md_path: str
+    slug: str
+    stage_name: str
+    stage_date: str
+    stage_xml_path: str
+    stage_md_path: str
+    type: str
+    def __init__(self, session: _Optional[str] = ..., bill_number: _Optional[str] = ..., author_name: _Optional[str] = ..., author_email: _Optional[str] = ..., metadata_xml_path: _Optional[str] = ..., summary_md_path: _Optional[str] = ..., slug: _Optional[str] = ..., stage_name: _Optional[str] = ..., stage_date: _Optional[str] = ..., stage_xml_path: _Optional[str] = ..., stage_md_path: _Optional[str] = ..., type: _Optional[str] = ...) -> None: ...
+
+class MetadataPendingBill(_message.Message):
+    __slots__ = ("session", "bill_number", "author_name", "author_email", "metadata_xml_path", "summary_md_path", "event_date", "restore_xml_path", "restore_md_path", "type")
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    BILL_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    AUTHOR_NAME_FIELD_NUMBER: _ClassVar[int]
+    AUTHOR_EMAIL_FIELD_NUMBER: _ClassVar[int]
+    METADATA_XML_PATH_FIELD_NUMBER: _ClassVar[int]
+    SUMMARY_MD_PATH_FIELD_NUMBER: _ClassVar[int]
+    EVENT_DATE_FIELD_NUMBER: _ClassVar[int]
+    RESTORE_XML_PATH_FIELD_NUMBER: _ClassVar[int]
+    RESTORE_MD_PATH_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
+    session: str
+    bill_number: str
+    author_name: str
+    author_email: str
+    metadata_xml_path: str
+    summary_md_path: str
+    event_date: str
+    restore_xml_path: str
+    restore_md_path: str
+    type: str
+    def __init__(self, session: _Optional[str] = ..., bill_number: _Optional[str] = ..., author_name: _Optional[str] = ..., author_email: _Optional[str] = ..., metadata_xml_path: _Optional[str] = ..., summary_md_path: _Optional[str] = ..., event_date: _Optional[str] = ..., restore_xml_path: _Optional[str] = ..., restore_md_path: _Optional[str] = ..., type: _Optional[str] = ...) -> None: ...
+
+class ScrapeResult(_message.Message):
+    __slots__ = ("success", "updated_stages", "author_name", "author_email", "stage_pending_commits", "metadata_pending_commits")
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    UPDATED_STAGES_FIELD_NUMBER: _ClassVar[int]
+    AUTHOR_NAME_FIELD_NUMBER: _ClassVar[int]
+    AUTHOR_EMAIL_FIELD_NUMBER: _ClassVar[int]
+    STAGE_PENDING_COMMITS_FIELD_NUMBER: _ClassVar[int]
+    METADATA_PENDING_COMMITS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    updated_stages: _containers.RepeatedScalarFieldContainer[str]
+    author_name: str
+    author_email: str
+    stage_pending_commits: _containers.RepeatedCompositeFieldContainer[StagePendingBill]
+    metadata_pending_commits: _containers.RepeatedCompositeFieldContainer[MetadataPendingBill]
+    def __init__(self, success: bool = ..., updated_stages: _Optional[_Iterable[str]] = ..., author_name: _Optional[str] = ..., author_email: _Optional[str] = ..., stage_pending_commits: _Optional[_Iterable[_Union[StagePendingBill, _Mapping]]] = ..., metadata_pending_commits: _Optional[_Iterable[_Union[MetadataPendingBill, _Mapping]]] = ...) -> None: ...
+
+class BillIndexData(_message.Message):
+    __slots__ = ("title", "status", "activity", "stages", "last_checked")
+    TITLE_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    ACTIVITY_FIELD_NUMBER: _ClassVar[int]
+    STAGES_FIELD_NUMBER: _ClassVar[int]
+    LAST_CHECKED_FIELD_NUMBER: _ClassVar[int]
+    title: str
+    status: str
+    activity: str
+    stages: _containers.RepeatedScalarFieldContainer[str]
+    last_checked: str
+    def __init__(self, title: _Optional[str] = ..., status: _Optional[str] = ..., activity: _Optional[str] = ..., stages: _Optional[_Iterable[str]] = ..., last_checked: _Optional[str] = ...) -> None: ...
+
+class SessionInfo(_message.Message):
+    __slots__ = ("name", "status", "updated")
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    UPDATED_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    status: str
+    updated: str
+    def __init__(self, name: _Optional[str] = ..., status: _Optional[str] = ..., updated: _Optional[str] = ...) -> None: ...
+
+class DocViewerLinks(_message.Message):
+    __slots__ = ("xml_links", "html_links")
+    class XmlLinksEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
+    class HtmlLinksEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
+    XML_LINKS_FIELD_NUMBER: _ClassVar[int]
+    HTML_LINKS_FIELD_NUMBER: _ClassVar[int]
+    xml_links: _containers.ScalarMap[str, str]
+    html_links: _containers.ScalarMap[str, str]
+    def __init__(self, xml_links: _Optional[_Mapping[str, str]] = ..., html_links: _Optional[_Mapping[str, str]] = ...) -> None: ...
