@@ -4,13 +4,14 @@ This repository contains central Protobuf schemas and generated source code for 
 
 ## Structure
 
-- `src/civican_schemas/proto/`: Protobuf definition files.
-- `src/civican_schemas/`: Generated ConnectRPC/Protobuf Python code.
+- `src/civican/schemas/proto/`: Protobuf definition files.
+- `src/civican/schemas/`: Generated ConnectRPC, Protobuf, and Pydantic Python code.
 
 ## Generating schemas
 
-To generate/update the Python client files from the Protobuf definitions, run:
+To generate/update the Python client files and Pydantic schemas from the Protobuf definitions, run:
 
 ```bash
-buf generate src
+uv run buf generate src
 ```
+

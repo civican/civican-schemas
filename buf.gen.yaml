@@ -6,3 +6,6 @@ plugins:
     out: src
   - plugin: buf.build/connectrpc/python:v0.10.1
     out: src
+  - plugin: protobuf-to-pydantic
+    out: src
+
