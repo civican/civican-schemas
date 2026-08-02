@@ -22,6 +22,11 @@ from .proto.legisinfo.v1 import (
     SortField,
     StagePendingBill,
 )
+from .proto.lobbycanada.v1 import (
+    LobbyCommunication,
+    LobbyRegistration,
+    LobbyScrapeResult,
+)
 
 __all__ = [
     "BillDetail",
@@ -46,4 +51,7 @@ __all__ = [
     "SortDirection",
     "SortField",
     "StagePendingBill",
+    "LobbyRegistration",
+    "LobbyCommunication",
+    "LobbyScrapeResult",
 ]

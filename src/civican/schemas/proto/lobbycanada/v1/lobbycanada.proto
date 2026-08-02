@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package lobbycanada.v1;
+
+message LobbyRegistration {
+  string registration_id = 1;
+  string registrant_name = 2;
+  string client_org_name = 3;
+  string type = 4; // e.g. "Corporation", "Organization", "Consultant"
+  string status = 5; // e.g. "Active", "Terminated"
+  string effective_date = 6;
+  string posted_date = 7;
+  repeated string subject_matters = 8;
+  repeated string legislative_proposals = 9; // References to bills or acts
+  repeated string government_institutions = 10;
+}
+
+message LobbyCommunication {
+  string communication_id = 1;
+  string registration_id = 2;
+  string client_org_name = 3;
+  string communication_date = 4;
+  string posted_date = 5;
+  string lobbyist_name = 6;
+  string dpoh_name = 7; // Designated Public Office Holder
+  string dpoh_title = 8;
+  string government_institution = 9;
+  repeated string subject_matters = 10;
+  repeated string legislative_proposals = 11;
+}
+
+message LobbyScrapeResult {
+  bool success = 1;
+  int32 total_scraped = 2;
+  int32 registrations_scraped = 3;
+  int32 communications_scraped = 4;
+}
