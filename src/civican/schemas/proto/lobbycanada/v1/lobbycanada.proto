@@ -2,6 +2,20 @@ syntax = "proto3";
 
 package lobbycanada.v1;
 
+service LobbyCanadaService {
+  // List registrations with filtering and pagination
+  rpc ListRegistrations(ListRegistrationsRequest) returns (ListRegistrationsResponse);
+
+  // Retrieve detailed registration by registration_id
+  rpc GetRegistration(GetRegistrationRequest) returns (GetRegistrationResponse);
+
+  // List communication reports with filtering and pagination
+  rpc ListCommunications(ListCommunicationsRequest) returns (ListCommunicationsResponse);
+
+  // Retrieve communication report detail by communication_id
+  rpc GetCommunication(GetCommunicationRequest) returns (GetCommunicationResponse);
+}
+
 message LobbyRegistration {
   string registration_id = 1;
   string registrant_name = 2;
@@ -34,4 +48,51 @@ message LobbyScrapeResult {
   int32 total_scraped = 2;
   int32 registrations_scraped = 3;
   int32 communications_scraped = 4;
+}
+
+message ListRegistrationsRequest {
+  string search_query = 1;
+  string registrant_name = 2;
+  string client_org_name = 3;
+  string status = 4;
+  int32 limit = 5;
+  int32 offset = 6;
+}
+
+message ListRegistrationsResponse {
+  repeated LobbyRegistration registrations = 1;
+  int32 total_count = 2;
+}
+
+message GetRegistrationRequest {
+  string registration_id = 1;
+}
+
+message GetRegistrationResponse {
+  LobbyRegistration registration = 1;
+}
+
+message ListCommunicationsRequest {
+  string search_query = 1;
+  string client_org_name = 2;
+  string lobbyist_name = 3;
+  string dpoh_name = 4;
+  string government_institution = 5;
+  string date_after = 6;
+  string date_before = 7;
+  int32 limit = 8;
+  int32 offset = 9;
+}
+
+message ListCommunicationsResponse {
+  repeated LobbyCommunication communications = 1;
+  int32 total_count = 2;
+}
+
+message GetCommunicationRequest {
+  string communication_id = 1;
+}
+
+message GetCommunicationResponse {
+  LobbyCommunication communication = 1;
 }

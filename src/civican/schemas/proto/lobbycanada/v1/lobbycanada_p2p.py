@@ -38,3 +38,42 @@ class LobbyScrapeResult(BaseModel):
     total_scraped: int = Field(default=0)
     registrations_scraped: int = Field(default=0)
     communications_scraped: int = Field(default=0)
+
+class ListRegistrationsRequest(BaseModel):
+    search_query: str = Field(default="")
+    registrant_name: str = Field(default="")
+    client_org_name: str = Field(default="")
+    status: str = Field(default="")
+    limit: int = Field(default=0)
+    offset: int = Field(default=0)
+
+class ListRegistrationsResponse(BaseModel):
+    registrations: typing.List[LobbyRegistration] = Field(default_factory=list)
+    total_count: int = Field(default=0)
+
+class GetRegistrationRequest(BaseModel):
+    registration_id: str = Field(default="")
+
+class GetRegistrationResponse(BaseModel):
+    registration: LobbyRegistration = Field(default_factory=LobbyRegistration)
+
+class ListCommunicationsRequest(BaseModel):
+    search_query: str = Field(default="")
+    client_org_name: str = Field(default="")
+    lobbyist_name: str = Field(default="")
+    dpoh_name: str = Field(default="")
+    government_institution: str = Field(default="")
+    date_after: str = Field(default="")
+    date_before: str = Field(default="")
+    limit: int = Field(default=0)
+    offset: int = Field(default=0)
+
+class ListCommunicationsResponse(BaseModel):
+    communications: typing.List[LobbyCommunication] = Field(default_factory=list)
+    total_count: int = Field(default=0)
+
+class GetCommunicationRequest(BaseModel):
+    communication_id: str = Field(default="")
+
+class GetCommunicationResponse(BaseModel):
+    communication: LobbyCommunication = Field(default_factory=LobbyCommunication)
