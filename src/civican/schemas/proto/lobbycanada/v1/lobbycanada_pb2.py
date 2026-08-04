@@ -12,37 +12,48 @@ from google.protobuf.internal import builder as _builder
 _sym_db = _symbol_database.Default()
 
 
+from civican.schemas.proto.legisinfo.v1 import legisinfo_pb2 as civican_dot_schemas_dot_proto_dot_legisinfo_dot_v1_dot_legisinfo__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6civican/schemas/proto/lobbycanada/v1/lobbycanada.proto\x12\x0elobbycanada.v1\"\x98\x03\n\x11LobbyRegistration\x12\'\n\x0fregistration_id\x18\x01 \x01(\tR\x0eregistrationId\x12\'\n\x0fregistrant_name\x18\x02 \x01(\tR\x0eregistrantName\x12&\n\x0f\x63lient_org_name\x18\x03 \x01(\tR\rclientOrgName\x12\x12\n\x04type\x18\x04 \x01(\tR\x04type\x12\x16\n\x06status\x18\x05 \x01(\tR\x06status\x12%\n\x0e\x65\x66\x66\x65\x63tive_date\x18\x06 \x01(\tR\reffectiveDate\x12\x1f\n\x0bposted_date\x18\x07 \x01(\tR\npostedDate\x12\'\n\x0fsubject_matters\x18\x08 \x03(\tR\x0esubjectMatters\x12\x33\n\x15legislative_proposals\x18\t \x03(\tR\x14legislativeProposals\x12\x37\n\x17government_institutions\x18\n \x03(\tR\x16governmentInstitutions\"\xd6\x03\n\x12LobbyCommunication\x12)\n\x10\x63ommunication_id\x18\x01 \x01(\tR\x0f\x63ommunicationId\x12\'\n\x0fregistration_id\x18\x02 \x01(\tR\x0eregistrationId\x12&\n\x0f\x63lient_org_name\x18\x03 \x01(\tR\rclientOrgName\x12-\n\x12\x63ommunication_date\x18\x04 \x01(\tR\x11\x63ommunicationDate\x12\x1f\n\x0bposted_date\x18\x05 \x01(\tR\npostedDate\x12#\n\rlobbyist_name\x18\x06 \x01(\tR\x0clobbyistName\x12\x1b\n\tdpoh_name\x18\x07 \x01(\tR\x08\x64pohName\x12\x1d\n\ndpoh_title\x18\x08 \x01(\tR\tdpohTitle\x12\x35\n\x16government_institution\x18\t \x01(\tR\x15governmentInstitution\x12\'\n\x0fsubject_matters\x18\n \x03(\tR\x0esubjectMatters\x12\x33\n\x15legislative_proposals\x18\x0b \x03(\tR\x14legislativeProposals\"\xbe\x01\n\x11LobbyScrapeResult\x12\x18\n\x07success\x18\x01 \x01(\x08R\x07success\x12#\n\rtotal_scraped\x18\x02 \x01(\x05R\x0ctotalScraped\x12\x33\n\x15registrations_scraped\x18\x03 \x01(\x05R\x14registrationsScraped\x12\x35\n\x16\x63ommunications_scraped\x18\x04 \x01(\x05R\x15\x63ommunicationsScraped\"\xd4\x01\n\x18ListRegistrationsRequest\x12!\n\x0csearch_query\x18\x01 \x01(\tR\x0bsearchQuery\x12\'\n\x0fregistrant_name\x18\x02 \x01(\tR\x0eregistrantName\x12&\n\x0f\x63lient_org_name\x18\x03 \x01(\tR\rclientOrgName\x12\x16\n\x06status\x18\x04 \x01(\tR\x06status\x12\x14\n\x05limit\x18\x05 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x06 \x01(\x05R\x06offset\"\x85\x01\n\x19ListRegistrationsResponse\x12G\n\rregistrations\x18\x01 \x03(\x0b\x32!.lobbycanada.v1.LobbyRegistrationR\rregistrations\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount\"A\n\x16GetRegistrationRequest\x12\'\n\x0fregistration_id\x18\x01 \x01(\tR\x0eregistrationId\"`\n\x17GetRegistrationResponse\x12\x45\n\x0cregistration\x18\x01 \x01(\x0b\x32!.lobbycanada.v1.LobbyRegistrationR\x0cregistration\"\xcd\x02\n\x19ListCommunicationsRequest\x12!\n\x0csearch_query\x18\x01 \x01(\tR\x0bsearchQuery\x12&\n\x0f\x63lient_org_name\x18\x02 \x01(\tR\rclientOrgName\x12#\n\rlobbyist_name\x18\x03 \x01(\tR\x0clobbyistName\x12\x1b\n\tdpoh_name\x18\x04 \x01(\tR\x08\x64pohName\x12\x35\n\x16government_institution\x18\x05 \x01(\tR\x15governmentInstitution\x12\x1d\n\ndate_after\x18\x06 \x01(\tR\tdateAfter\x12\x1f\n\x0b\x64\x61te_before\x18\x07 \x01(\tR\ndateBefore\x12\x14\n\x05limit\x18\x08 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\t \x01(\x05R\x06offset\"\x89\x01\n\x1aListCommunicationsResponse\x12J\n\x0e\x63ommunications\x18\x01 \x03(\x0b\x32\".lobbycanada.v1.LobbyCommunicationR\x0e\x63ommunications\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount\"D\n\x17GetCommunicationRequest\x12)\n\x10\x63ommunication_id\x18\x01 \x01(\tR\x0f\x63ommunicationId\"d\n\x18GetCommunicationResponse\x12H\n\rcommunication\x18\x01 \x01(\x0b\x32\".lobbycanada.v1.LobbyCommunicationR\rcommunication2\xb6\x03\n\x12LobbyCanadaService\x12h\n\x11ListRegistrations\x12(.lobbycanada.v1.ListRegistrationsRequest\x1a).lobbycanada.v1.ListRegistrationsResponse\x12\x62\n\x0fGetRegistration\x12&.lobbycanada.v1.GetRegistrationRequest\x1a\'.lobbycanada.v1.GetRegistrationResponse\x12k\n\x12ListCommunications\x12).lobbycanada.v1.ListCommunicationsRequest\x1a*.lobbycanada.v1.ListCommunicationsResponse\x12\x65\n\x10GetCommunication\x12\'.lobbycanada.v1.GetCommunicationRequest\x1a(.lobbycanada.v1.GetCommunicationResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6civican/schemas/proto/lobbycanada/v1/lobbycanada.proto\x12\x0elobbycanada.v1\x1a\x32\x63ivican/schemas/proto/legisinfo/v1/legisinfo.proto\"\x98\x03\n\x11LobbyRegistration\x12\'\n\x0fregistration_id\x18\x01 \x01(\tR\x0eregistrationId\x12\'\n\x0fregistrant_name\x18\x02 \x01(\tR\x0eregistrantName\x12&\n\x0f\x63lient_org_name\x18\x03 \x01(\tR\rclientOrgName\x12\x12\n\x04type\x18\x04 \x01(\tR\x04type\x12\x16\n\x06status\x18\x05 \x01(\tR\x06status\x12%\n\x0e\x65\x66\x66\x65\x63tive_date\x18\x06 \x01(\tR\reffectiveDate\x12\x1f\n\x0bposted_date\x18\x07 \x01(\tR\npostedDate\x12\'\n\x0fsubject_matters\x18\x08 \x03(\tR\x0esubjectMatters\x12\x33\n\x15legislative_proposals\x18\t \x03(\tR\x14legislativeProposals\x12\x37\n\x17government_institutions\x18\n \x03(\tR\x16governmentInstitutions\"\xd6\x03\n\x12LobbyCommunication\x12)\n\x10\x63ommunication_id\x18\x01 \x01(\tR\x0f\x63ommunicationId\x12\'\n\x0fregistration_id\x18\x02 \x01(\tR\x0eregistrationId\x12&\n\x0f\x63lient_org_name\x18\x03 \x01(\tR\rclientOrgName\x12-\n\x12\x63ommunication_date\x18\x04 \x01(\tR\x11\x63ommunicationDate\x12\x1f\n\x0bposted_date\x18\x05 \x01(\tR\npostedDate\x12#\n\rlobbyist_name\x18\x06 \x01(\tR\x0clobbyistName\x12\x1b\n\tdpoh_name\x18\x07 \x01(\tR\x08\x64pohName\x12\x1d\n\ndpoh_title\x18\x08 \x01(\tR\tdpohTitle\x12\x35\n\x16government_institution\x18\t \x01(\tR\x15governmentInstitution\x12\'\n\x0fsubject_matters\x18\n \x03(\tR\x0esubjectMatters\x12\x33\n\x15legislative_proposals\x18\x0b \x03(\tR\x14legislativeProposals\"\xbe\x01\n\x11LobbyScrapeResult\x12\x18\n\x07success\x18\x01 \x01(\x08R\x07success\x12#\n\rtotal_scraped\x18\x02 \x01(\x05R\x0ctotalScraped\x12\x33\n\x15registrations_scraped\x18\x03 \x01(\x05R\x14registrationsScraped\x12\x35\n\x16\x63ommunications_scraped\x18\x04 \x01(\x05R\x15\x63ommunicationsScraped\"\xd4\x01\n\x18ListRegistrationsRequest\x12!\n\x0csearch_query\x18\x01 \x01(\tR\x0bsearchQuery\x12\'\n\x0fregistrant_name\x18\x02 \x01(\tR\x0eregistrantName\x12&\n\x0f\x63lient_org_name\x18\x03 \x01(\tR\rclientOrgName\x12\x16\n\x06status\x18\x04 \x01(\tR\x06status\x12\x14\n\x05limit\x18\x05 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x06 \x01(\x05R\x06offset\"\x85\x01\n\x19ListRegistrationsResponse\x12G\n\rregistrations\x18\x01 \x03(\x0b\x32!.lobbycanada.v1.LobbyRegistrationR\rregistrations\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount\"A\n\x16GetRegistrationRequest\x12\'\n\x0fregistration_id\x18\x01 \x01(\tR\x0eregistrationId\"`\n\x17GetRegistrationResponse\x12\x45\n\x0cregistration\x18\x01 \x01(\x0b\x32!.lobbycanada.v1.LobbyRegistrationR\x0cregistration\"\xcd\x02\n\x19ListCommunicationsRequest\x12!\n\x0csearch_query\x18\x01 \x01(\tR\x0bsearchQuery\x12&\n\x0f\x63lient_org_name\x18\x02 \x01(\tR\rclientOrgName\x12#\n\rlobbyist_name\x18\x03 \x01(\tR\x0clobbyistName\x12\x1b\n\tdpoh_name\x18\x04 \x01(\tR\x08\x64pohName\x12\x35\n\x16government_institution\x18\x05 \x01(\tR\x15governmentInstitution\x12\x1d\n\ndate_after\x18\x06 \x01(\tR\tdateAfter\x12\x1f\n\x0b\x64\x61te_before\x18\x07 \x01(\tR\ndateBefore\x12\x14\n\x05limit\x18\x08 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\t \x01(\x05R\x06offset\"\x89\x01\n\x1aListCommunicationsResponse\x12J\n\x0e\x63ommunications\x18\x01 \x03(\x0b\x32\".lobbycanada.v1.LobbyCommunicationR\x0e\x63ommunications\x12\x1f\n\x0btotal_count\x18\x02 \x01(\x05R\ntotalCount\"D\n\x17GetCommunicationRequest\x12)\n\x10\x63ommunication_id\x18\x01 \x01(\tR\x0f\x63ommunicationId\"d\n\x18GetCommunicationResponse\x12H\n\rcommunication\x18\x01 \x01(\x0b\x32\".lobbycanada.v1.LobbyCommunicationR\rcommunication\"l\n\x19\x43rossReferenceBillRequest\x12\x1f\n\x0b\x62ill_number\x18\x01 \x01(\tR\nbillNumber\x12\x14\n\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x18\n\x07session\x18\x03 \x01(\tR\x07session\"\x89\x03\n\x1a\x43rossReferenceBillResponse\x12\x1f\n\x0btarget_bill\x18\x01 \x01(\tR\ntargetBill\x12;\n\x0c\x62ill_details\x18\x02 \x01(\x0b\x32\x18.legisinfo.v1.BillDetailR\x0b\x62illDetails\x12G\n\rregistrations\x18\x03 \x03(\x0b\x32!.lobbycanada.v1.LobbyRegistrationR\rregistrations\x12:\n\x19total_registrations_count\x18\x04 \x01(\x05R\x17totalRegistrationsCount\x12J\n\x0e\x63ommunications\x18\x05 \x03(\x0b\x32\".lobbycanada.v1.LobbyCommunicationR\x0e\x63ommunications\x12<\n\x1atotal_communications_count\x18\x06 \x01(\x05R\x18totalCommunicationsCount\"\xa5\x01\n\x0eTopLobbiedBill\x12\x1f\n\x0b\x62ill_number\x18\x01 \x01(\tR\nbillNumber\x12%\n\x0elobbying_count\x18\x02 \x01(\x05R\rlobbyingCount\x12\x19\n\x08title_en\x18\x03 \x01(\tR\x07titleEn\x12\x18\n\x07session\x18\x04 \x01(\tR\x07session\x12\x16\n\x06status\x18\x05 \x01(\tR\x06status\"1\n\x19GetTopLobbiedBillsRequest\x12\x14\n\x05limit\x18\x01 \x01(\x05R\x05limit\"R\n\x1aGetTopLobbiedBillsResponse\x12\x34\n\x05\x62ills\x18\x01 \x03(\x0b\x32\x1e.lobbycanada.v1.TopLobbiedBillR\x05\x62ills2\x90\x05\n\x12LobbyCanadaService\x12h\n\x11ListRegistrations\x12(.lobbycanada.v1.ListRegistrationsRequest\x1a).lobbycanada.v1.ListRegistrationsResponse\x12\x62\n\x0fGetRegistration\x12&.lobbycanada.v1.GetRegistrationRequest\x1a\'.lobbycanada.v1.GetRegistrationResponse\x12k\n\x12ListCommunications\x12).lobbycanada.v1.ListCommunicationsRequest\x1a*.lobbycanada.v1.ListCommunicationsResponse\x12\x65\n\x10GetCommunication\x12\'.lobbycanada.v1.GetCommunicationRequest\x1a(.lobbycanada.v1.GetCommunicationResponse\x12k\n\x12\x43rossReferenceBill\x12).lobbycanada.v1.CrossReferenceBillRequest\x1a*.lobbycanada.v1.CrossReferenceBillResponse\x12k\n\x12GetTopLobbiedBills\x12).lobbycanada.v1.GetTopLobbiedBillsRequest\x1a*.lobbycanada.v1.GetTopLobbiedBillsResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'civican.schemas.proto.lobbycanada.v1.lobbycanada_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
-  _globals['_LOBBYREGISTRATION']._serialized_start=75
-  _globals['_LOBBYREGISTRATION']._serialized_end=483
-  _globals['_LOBBYCOMMUNICATION']._serialized_start=486
-  _globals['_LOBBYCOMMUNICATION']._serialized_end=956
-  _globals['_LOBBYSCRAPERESULT']._serialized_start=959
-  _globals['_LOBBYSCRAPERESULT']._serialized_end=1149
-  _globals['_LISTREGISTRATIONSREQUEST']._serialized_start=1152
-  _globals['_LISTREGISTRATIONSREQUEST']._serialized_end=1364
-  _globals['_LISTREGISTRATIONSRESPONSE']._serialized_start=1367
-  _globals['_LISTREGISTRATIONSRESPONSE']._serialized_end=1500
-  _globals['_GETREGISTRATIONREQUEST']._serialized_start=1502
-  _globals['_GETREGISTRATIONREQUEST']._serialized_end=1567
-  _globals['_GETREGISTRATIONRESPONSE']._serialized_start=1569
-  _globals['_GETREGISTRATIONRESPONSE']._serialized_end=1665
-  _globals['_LISTCOMMUNICATIONSREQUEST']._serialized_start=1668
-  _globals['_LISTCOMMUNICATIONSREQUEST']._serialized_end=2001
-  _globals['_LISTCOMMUNICATIONSRESPONSE']._serialized_start=2004
-  _globals['_LISTCOMMUNICATIONSRESPONSE']._serialized_end=2141
-  _globals['_GETCOMMUNICATIONREQUEST']._serialized_start=2143
-  _globals['_GETCOMMUNICATIONREQUEST']._serialized_end=2211
-  _globals['_GETCOMMUNICATIONRESPONSE']._serialized_start=2213
-  _globals['_GETCOMMUNICATIONRESPONSE']._serialized_end=2313
-  _globals['_LOBBYCANADASERVICE']._serialized_start=2316
-  _globals['_LOBBYCANADASERVICE']._serialized_end=2754
+  _globals['_LOBBYREGISTRATION']._serialized_start=127
+  _globals['_LOBBYREGISTRATION']._serialized_end=535
+  _globals['_LOBBYCOMMUNICATION']._serialized_start=538
+  _globals['_LOBBYCOMMUNICATION']._serialized_end=1008
+  _globals['_LOBBYSCRAPERESULT']._serialized_start=1011
+  _globals['_LOBBYSCRAPERESULT']._serialized_end=1201
+  _globals['_LISTREGISTRATIONSREQUEST']._serialized_start=1204
+  _globals['_LISTREGISTRATIONSREQUEST']._serialized_end=1416
+  _globals['_LISTREGISTRATIONSRESPONSE']._serialized_start=1419
+  _globals['_LISTREGISTRATIONSRESPONSE']._serialized_end=1552
+  _globals['_GETREGISTRATIONREQUEST']._serialized_start=1554
+  _globals['_GETREGISTRATIONREQUEST']._serialized_end=1619
+  _globals['_GETREGISTRATIONRESPONSE']._serialized_start=1621
+  _globals['_GETREGISTRATIONRESPONSE']._serialized_end=1717
+  _globals['_LISTCOMMUNICATIONSREQUEST']._serialized_start=1720
+  _globals['_LISTCOMMUNICATIONSREQUEST']._serialized_end=2053
+  _globals['_LISTCOMMUNICATIONSRESPONSE']._serialized_start=2056
+  _globals['_LISTCOMMUNICATIONSRESPONSE']._serialized_end=2193
+  _globals['_GETCOMMUNICATIONREQUEST']._serialized_start=2195
+  _globals['_GETCOMMUNICATIONREQUEST']._serialized_end=2263
+  _globals['_GETCOMMUNICATIONRESPONSE']._serialized_start=2265
+  _globals['_GETCOMMUNICATIONRESPONSE']._serialized_end=2365
+  _globals['_CROSSREFERENCEBILLREQUEST']._serialized_start=2367
+  _globals['_CROSSREFERENCEBILLREQUEST']._serialized_end=2475
+  _globals['_CROSSREFERENCEBILLRESPONSE']._serialized_start=2478
+  _globals['_CROSSREFERENCEBILLRESPONSE']._serialized_end=2871
+  _globals['_TOPLOBBIEDBILL']._serialized_start=2874
+  _globals['_TOPLOBBIEDBILL']._serialized_end=3039
+  _globals['_GETTOPLOBBIEDBILLSREQUEST']._serialized_start=3041
+  _globals['_GETTOPLOBBIEDBILLSREQUEST']._serialized_end=3090
+  _globals['_GETTOPLOBBIEDBILLSRESPONSE']._serialized_start=3092
+  _globals['_GETTOPLOBBIEDBILLSRESPONSE']._serialized_end=3174
+  _globals['_LOBBYCANADASERVICE']._serialized_start=3177
+  _globals['_LOBBYCANADASERVICE']._serialized_end=3833
 # @@protoc_insertion_point(module_scope)

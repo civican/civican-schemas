@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package lobbycanada.v1;
 
+import "civican/schemas/proto/legisinfo/v1/legisinfo.proto";
+
 service LobbyCanadaService {
   // List registrations with filtering and pagination
   rpc ListRegistrations(ListRegistrationsRequest) returns (ListRegistrationsResponse);
@@ -14,6 +16,12 @@ service LobbyCanadaService {
 
   // Retrieve communication report detail by communication_id
   rpc GetCommunication(GetCommunicationRequest) returns (GetCommunicationResponse);
+
+  // Cross-reference a bill with Lobby Canada registrations and communications
+  rpc CrossReferenceBill(CrossReferenceBillRequest) returns (CrossReferenceBillResponse);
+
+  // Retrieve top lobbied bills ranked by volume of lobbying activity
+  rpc GetTopLobbiedBills(GetTopLobbiedBillsRequest) returns (GetTopLobbiedBillsResponse);
 }
 
 message LobbyRegistration {
@@ -95,4 +103,35 @@ message GetCommunicationRequest {
 
 message GetCommunicationResponse {
   LobbyCommunication communication = 1;
+}
+
+message CrossReferenceBillRequest {
+  string bill_number = 1;
+  int32 limit = 2;
+  string session = 3;
+}
+
+message CrossReferenceBillResponse {
+  string target_bill = 1;
+  legisinfo.v1.BillDetail bill_details = 2;
+  repeated LobbyRegistration registrations = 3;
+  int32 total_registrations_count = 4;
+  repeated LobbyCommunication communications = 5;
+  int32 total_communications_count = 6;
+}
+
+message TopLobbiedBill {
+  string bill_number = 1;
+  int32 lobbying_count = 2;
+  string title_en = 3;
+  string session = 4;
+  string status = 5;
+}
+
+message GetTopLobbiedBillsRequest {
+  int32 limit = 1;
+}
+
+message GetTopLobbiedBillsResponse {
+  repeated TopLobbiedBill bills = 1;
 }

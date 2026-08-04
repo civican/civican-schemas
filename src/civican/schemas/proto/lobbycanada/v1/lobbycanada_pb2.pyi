@@ -1,3 +1,4 @@
+from civican.schemas.proto.legisinfo.v1 import legisinfo_pb2 as _legisinfo_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
@@ -144,3 +145,55 @@ class GetCommunicationResponse(_message.Message):
     COMMUNICATION_FIELD_NUMBER: _ClassVar[int]
     communication: LobbyCommunication
     def __init__(self, communication: _Optional[_Union[LobbyCommunication, _Mapping]] = ...) -> None: ...
+
+class CrossReferenceBillRequest(_message.Message):
+    __slots__ = ("bill_number", "limit", "session")
+    BILL_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    LIMIT_FIELD_NUMBER: _ClassVar[int]
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    bill_number: str
+    limit: int
+    session: str
+    def __init__(self, bill_number: _Optional[str] = ..., limit: _Optional[int] = ..., session: _Optional[str] = ...) -> None: ...
+
+class CrossReferenceBillResponse(_message.Message):
+    __slots__ = ("target_bill", "bill_details", "registrations", "total_registrations_count", "communications", "total_communications_count")
+    TARGET_BILL_FIELD_NUMBER: _ClassVar[int]
+    BILL_DETAILS_FIELD_NUMBER: _ClassVar[int]
+    REGISTRATIONS_FIELD_NUMBER: _ClassVar[int]
+    TOTAL_REGISTRATIONS_COUNT_FIELD_NUMBER: _ClassVar[int]
+    COMMUNICATIONS_FIELD_NUMBER: _ClassVar[int]
+    TOTAL_COMMUNICATIONS_COUNT_FIELD_NUMBER: _ClassVar[int]
+    target_bill: str
+    bill_details: _legisinfo_pb2.BillDetail
+    registrations: _containers.RepeatedCompositeFieldContainer[LobbyRegistration]
+    total_registrations_count: int
+    communications: _containers.RepeatedCompositeFieldContainer[LobbyCommunication]
+    total_communications_count: int
+    def __init__(self, target_bill: _Optional[str] = ..., bill_details: _Optional[_Union[_legisinfo_pb2.BillDetail, _Mapping]] = ..., registrations: _Optional[_Iterable[_Union[LobbyRegistration, _Mapping]]] = ..., total_registrations_count: _Optional[int] = ..., communications: _Optional[_Iterable[_Union[LobbyCommunication, _Mapping]]] = ..., total_communications_count: _Optional[int] = ...) -> None: ...
+
+class TopLobbiedBill(_message.Message):
+    __slots__ = ("bill_number", "lobbying_count", "title_en", "session", "status")
+    BILL_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    LOBBYING_COUNT_FIELD_NUMBER: _ClassVar[int]
+    TITLE_EN_FIELD_NUMBER: _ClassVar[int]
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    bill_number: str
+    lobbying_count: int
+    title_en: str
+    session: str
+    status: str
+    def __init__(self, bill_number: _Optional[str] = ..., lobbying_count: _Optional[int] = ..., title_en: _Optional[str] = ..., session: _Optional[str] = ..., status: _Optional[str] = ...) -> None: ...
+
+class GetTopLobbiedBillsRequest(_message.Message):
+    __slots__ = ("limit",)
+    LIMIT_FIELD_NUMBER: _ClassVar[int]
+    limit: int
+    def __init__(self, limit: _Optional[int] = ...) -> None: ...
+
+class GetTopLobbiedBillsResponse(_message.Message):
+    __slots__ = ("bills",)
+    BILLS_FIELD_NUMBER: _ClassVar[int]
+    bills: _containers.RepeatedCompositeFieldContainer[TopLobbiedBill]
+    def __init__(self, bills: _Optional[_Iterable[_Union[TopLobbiedBill, _Mapping]]] = ...) -> None: ...

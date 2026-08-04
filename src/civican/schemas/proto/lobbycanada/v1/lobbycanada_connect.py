@@ -30,6 +30,12 @@ class LobbyCanadaService(Protocol):
     async def get_communication(self, request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetCommunicationRequest, ctx: RequestContext) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetCommunicationResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
+    async def cross_reference_bill(self, request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest, ctx: RequestContext) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def get_top_lobbied_bills(self, request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest, ctx: RequestContext) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
 
 class LobbyCanadaServiceASGIApplication(ConnectASGIApplication[LobbyCanadaService]):
     def __init__(self, service: LobbyCanadaService | AsyncGenerator[LobbyCanadaService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
@@ -75,6 +81,26 @@ class LobbyCanadaServiceASGIApplication(ConnectASGIApplication[LobbyCanadaServic
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.get_communication,
+                ),
+                "/lobbycanada.v1.LobbyCanadaService/CrossReferenceBill": Endpoint.unary(
+                    method=MethodInfo(
+                        name="CrossReferenceBill",
+                        service_name="lobbycanada.v1.LobbyCanadaService",
+                        input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest,
+                        output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.cross_reference_bill,
+                ),
+                "/lobbycanada.v1.LobbyCanadaService/GetTopLobbiedBills": Endpoint.unary(
+                    method=MethodInfo(
+                        name="GetTopLobbiedBills",
+                        service_name="lobbycanada.v1.LobbyCanadaService",
+                        input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest,
+                        output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.get_top_lobbied_bills,
                 ),
             },
             interceptors=interceptors,
@@ -170,6 +196,46 @@ class LobbyCanadaServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
+    async def cross_reference_bill(
+        self,
+        request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="CrossReferenceBill",
+                service_name="lobbycanada.v1.LobbyCanadaService",
+                input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest,
+                output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def get_top_lobbied_bills(
+        self,
+        request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="GetTopLobbiedBills",
+                service_name="lobbycanada.v1.LobbyCanadaService",
+                input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest,
+                output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
 
 
 
@@ -182,6 +248,10 @@ class LobbyCanadaServiceSync(Protocol):
     def list_communications(self, request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.ListCommunicationsRequest, ctx: RequestContext) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.ListCommunicationsResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def get_communication(self, request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetCommunicationRequest, ctx: RequestContext) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetCommunicationResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def cross_reference_bill(self, request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest, ctx: RequestContext) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def get_top_lobbied_bills(self, request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest, ctx: RequestContext) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -228,6 +298,26 @@ class LobbyCanadaServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.get_communication,
+                ),
+                "/lobbycanada.v1.LobbyCanadaService/CrossReferenceBill": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="CrossReferenceBill",
+                        service_name="lobbycanada.v1.LobbyCanadaService",
+                        input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest,
+                        output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.cross_reference_bill,
+                ),
+                "/lobbycanada.v1.LobbyCanadaService/GetTopLobbiedBills": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="GetTopLobbiedBills",
+                        service_name="lobbycanada.v1.LobbyCanadaService",
+                        input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest,
+                        output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.get_top_lobbied_bills,
                 ),
             },
             interceptors=interceptors,
@@ -317,6 +407,46 @@ class LobbyCanadaServiceClientSync(ConnectClientSync):
                 service_name="lobbycanada.v1.LobbyCanadaService",
                 input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetCommunicationRequest,
                 output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetCommunicationResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def cross_reference_bill(
+        self,
+        request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="CrossReferenceBill",
+                service_name="lobbycanada.v1.LobbyCanadaService",
+                input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillRequest,
+                output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.CrossReferenceBillResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def get_top_lobbied_bills(
+        self,
+        request: civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="GetTopLobbiedBills",
+                service_name="lobbycanada.v1.LobbyCanadaService",
+                input=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsRequest,
+                output=civican_dot_schemas_dot_proto_dot_lobbycanada_dot_v1_dot_lobbycanada__pb2.GetTopLobbiedBillsResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

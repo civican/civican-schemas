@@ -2,6 +2,7 @@
 # gen by protobuf_to_pydantic[v0.3.3.1](https://github.com/so1n/protobuf_to_pydantic)
 # Protobuf Version: 7.35.1 
 # Pydantic Version: 2.13.4 
+from civican.schemas.proto.legisinfo.v1.legisinfo_p2p import BillDetail
 from google.protobuf.message import Message  # type: ignore
 from pydantic import BaseModel
 from pydantic import Field
@@ -77,3 +78,29 @@ class GetCommunicationRequest(BaseModel):
 
 class GetCommunicationResponse(BaseModel):
     communication: LobbyCommunication = Field(default_factory=LobbyCommunication)
+
+class CrossReferenceBillRequest(BaseModel):
+    bill_number: str = Field(default="")
+    limit: int = Field(default=0)
+    session: str = Field(default="")
+
+class CrossReferenceBillResponse(BaseModel):
+    target_bill: str = Field(default="")
+    bill_details: BillDetail = Field(default_factory=BillDetail)
+    registrations: typing.List[LobbyRegistration] = Field(default_factory=list)
+    total_registrations_count: int = Field(default=0)
+    communications: typing.List[LobbyCommunication] = Field(default_factory=list)
+    total_communications_count: int = Field(default=0)
+
+class TopLobbiedBill(BaseModel):
+    bill_number: str = Field(default="")
+    lobbying_count: int = Field(default=0)
+    title_en: str = Field(default="")
+    session: str = Field(default="")
+    status: str = Field(default="")
+
+class GetTopLobbiedBillsRequest(BaseModel):
+    limit: int = Field(default=0)
+
+class GetTopLobbiedBillsResponse(BaseModel):
+    bills: typing.List[TopLobbiedBill] = Field(default_factory=list)
